@@ -29,12 +29,19 @@ class CategoryController extends Controller
             'description' => 'required|string'
         ]);
 
-        $result = $this->categoryService->addCategory($request->all());
+        try {
+            $result = $this->categoryService->addCategory($request->all());
 
-        return response()->json([
-            'status' => 201,
-            'message' => 'Category created successfully',
-        ], 201);
+            return response()->json([
+                'status' => 201,
+                'message' => 'Category created successfully',
+            ], 201);
+        } catch(Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function update(Request $request, $id)
@@ -44,12 +51,20 @@ class CategoryController extends Controller
             'description' => 'required|string'
         ]);
 
-        $result = $this->categoryService->updateCategory($id, $request->all());
+        try {
+            $result = $this->categoryService->updateCategory($id, $request->all());
+    
+            return response()->json([
+                'status' => 200,
+                'message' => 'Category updated successfully',
+            ], 200);
+        }catch(Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'message' => $e->getMessage()
+            ], 500);
+        }
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Category updated successfully',
-        ], 200);
     }
 
     public function delete($id)
