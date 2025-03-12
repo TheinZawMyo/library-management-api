@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Middleware\RoleMiddleware;
+use App\Http\Controllers\CategoryController;
 
 // auth
 Route::post('/register', [AuthController::class, 'register']);
@@ -47,6 +48,18 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('/members', [UserManagementController::class, 'index']);
         // ==== get user by id ====//
         Route::get('/members/{id}', [UserManagementController::class, 'show']);
+
+
+        // ==== get all categories ====//
+        Route::get('/categories', [CategoryController::class, 'index']);
+        // ==== add category ====//
+        Route::post('/category', [CategoryController::class, 'store']);
+        // ==== get category by id ====//
+        Route::get('/category/{id}', [CategoryController::class, 'show']);
+        // ==== update category ====//
+        Route::put('/category/{id}', [CategoryController::class, 'update']);
+        // ==== delete category ====//
+        Route::delete('/category/{id}', [CategoryController::class, 'delete']);
     });
 
     // admin
