@@ -21,8 +21,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: library_management_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: lms_user
+      MYSQL_PASSWORD: lms_user
     ports:
       - "3306:3306"
     volumes:
